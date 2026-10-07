@@ -1,0 +1,5 @@
+# Yang dibutuhkan situs (FastAPI). Dipakai juga oleh hosting seperti Render.
+numpy
+fastapi
+uvicorn
+psycopg[binary]
