@@ -1,4 +1,4 @@
-# Yang dibutuhkan situs (FastAPI). Dipakai juga oleh hosting seperti Render.
+# Yang dibutuhkan situs (FastAPI). Harus sama dengan daftar di pyproject.toml, yang dipakai Vercel.
 numpy
 fastapi
 uvicorn

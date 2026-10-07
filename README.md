@@ -52,16 +52,21 @@ Tes: `.venv/bin/python -m unittest discover tests`
 
 ## Memasang secara daring
 
-Situs ini butuh hosting yang bisa menjalankan Python, misalnya Render atau Railway.
+Situs dipasang di Vercel, dengan basis data Postgres di Neon.
 
-- Perintah pasang: `pip install -r requirements.txt`
-- Perintah jalan: `uvicorn web.app:app --host 0.0.0.0 --port $PORT`
-- Wajib: variabel lingkungan `DATABASE_URL` berisi alamat Postgres (misalnya Neon). Tanpa itu akun dan
-  riwayat ditulis ke berkas di server hosting, yang hilang setiap aplikasi dinyalakan ulang. Tabel dibuat otomatis.
-- Opsional: `ADMIN_TOKEN` untuk mengunduh feedback.
-- Situs harus dibuka lewat HTTPS (bawaan di Render dan Railway), supaya cookie masuk hanya dikirim terenkripsi.
+1. Buat proyek di Neon dan salin alamat koneksinya (`postgresql://...`).
+2. Di Vercel: **Add New → Project**, pilih repo ini. `pyproject.toml` sudah memberi tahu Vercel bahwa
+   aplikasinya ada di `web/app.py`.
+3. Isi variabel lingkungan `DATABASE_URL` dengan alamat dari Neon. Ini wajib: Vercel tidak menyimpan
+   berkas, jadi tanpa itu akun dan riwayat hilang. Tabel dibuat otomatis.
+4. Opsional: `ADMIN_TOKEN` untuk mengunduh feedback.
 
 Kata sandi dan alamat basis data jangan pernah di-commit.
+
+Setelah lama tidak dibuka, permintaan pertama lebih lambat beberapa detik karena tabel O*NET dimuat ulang.
+
+Di hosting lain yang menjalankan Python (misalnya Render atau Railway), perintah pasangnya
+`pip install -r requirements.txt` dan perintah jalannya `uvicorn web.app:app --host 0.0.0.0 --port $PORT`.
 
 ## Mengambil feedback
 
@@ -78,6 +83,7 @@ Dengan variabel lingkungan `ADMIN_TOKEN` terisi:
 | `web/static/` | Tampilan: `index.html`, `tailwind.css` (hasil bangun), gambar |
 | `web/static/js/` | JavaScript dalam modul: `main.js` (rute dan event), `state.js`, `sync.js`, `router.js`, `api.js`, `components/` (bagian yang dipakai bersama), `views/` (satu berkas per halaman) |
 | `web/tailwind.css`, `package.json` | Sumber CSS dan perintah bangunnya |
+| `pyproject.toml` | Pengaturan untuk Vercel: letak aplikasi dan daftar paket |
 | `crs/questionnaire.py` | 60 butir minat dan penghitungan skor RIASEC |
 | `crs/recommender.py` | Pearson Correlation antara profil siswa dan profil pekerjaan; kompetensi penting tiap pekerjaan |
 | `crs/service.py` | Isi halaman hasil, alasan kecocokan, jaringan karier, detail pekerjaan, dan ekspor |
