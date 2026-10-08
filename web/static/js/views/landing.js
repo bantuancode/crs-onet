@@ -75,8 +75,7 @@ const Hero = () => `
 <section id="beranda" class="relative overflow-hidden bg-gradient-to-b from-brand-50 to-white">
   <div class="mx-auto grid max-w-6xl items-center gap-10 px-5 py-14 md:grid-cols-2 md:py-24">
     <div class="animate-rise">
-      <span class="chip mb-4">${icon("spark", "h-3.5 w-3.5")}Untuk siswa SMA</span>
-      <h1 class="text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">Temukan Karier yang Tepat Berdasarkan Minat Kamu Bersama <span class="text-brand-500">texin</span></h1>
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight md:text-5xl">Temukan Karier yang Tepat Berdasarkan Minat Kamu</h1>
       <p class="mt-5 max-w-lg text-base leading-relaxed text-mute">Jawab 60 pertanyaan sederhana tentang aktivitas kerja yang mungkin kamu sukai, lalu dapatkan rekomendasi karier berdasarkan kecocokan minatmu dengan ratusan profil pekerjaan.</p>
       <div class="mt-7 flex flex-wrap items-center gap-4">
         <a href="#/${startRoute()}" class="btn-primary px-6 py-3 text-base">Mulai Sekarang ${icon("arrow")}</a>

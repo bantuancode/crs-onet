@@ -25,6 +25,8 @@ export const ICONS = {
   lock: "M6 11h12v9H6zM8 11V8a4 4 0 0 1 8 0v3",
   user: "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0",
   target: "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM12 11.500v1",
+  eye: "M2 12s3.600-7 10-7 10 7 10 7-3.600 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6z",
+  eyeOff: "M2 12s3.600-7 10-7 10 7 10 7-3.600 7-10 7S2 12 2 12zM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6zM4 4l16 16",
   spark: "M12 3v5M12 16v5M3 12h5M16 12h5M6 6l3 3M15 15l3 3M18 6l-3 3M9 15l-3 3",
 };
 export const icon = (name, cls = "h-5 w-5") =>
@@ -48,7 +50,7 @@ export function ring(percent, size = 76) {
 export const bar = (percent, tone = "bg-brand-500") =>
   `<div class="h-2.5 w-full overflow-hidden rounded-full bg-brand-50"><div class="${tone} h-full rounded-full transition-all duration-700" style="width:${Math.max(0, Math.min(100, percent))}%"></div></div>`;
 
-/** A labelled text input with an icon on the left. */
+/** A labelled text input with an icon on the left. A password field also gets a show/hide button on the right. */
 export const Field = (
   id,
   label,
@@ -59,7 +61,8 @@ export const Field = (
 ) => `<div>
   <label class="label" for="${id}">${label}</label>
   <div class="relative"><span class="pointer-events-none absolute inset-y-0 left-3 flex items-center text-slate-400">${icon(ic, "h-4 w-4")}</span>
-  <input id="${id}" name="${id}" type="${type}" placeholder="${placeholder}" class="field pl-10" autocomplete="${autocomplete}"></div></div>`;
+  <input id="${id}" name="${id}" type="${type}" placeholder="${placeholder}" class="field pl-10 ${type === "password" ? "pr-10" : ""}" autocomplete="${autocomplete}">${type === "password" ? `
+  <button type="button" data-peek="${id}" class="absolute inset-y-0 right-3 flex items-center text-slate-400 hover:text-brand-600" aria-label="Tampilkan password">${icon("eye", "h-4 w-4")}</button>` : ""}</div></div>`;
 
 export const fieldValue = (id) => (document.getElementById(id) || {}).value || "";
 

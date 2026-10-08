@@ -17,7 +17,7 @@ export function appShell(active, content) {
   }).join("");
   const initial = h((S.user.name || "P").charAt(0).toUpperCase());
   return `<div class="min-h-screen bg-slate-50 lg:flex">
-    <aside id="side" class="fixed inset-y-0 left-0 z-40 flex w-64 -translate-x-full flex-col gap-1 border-r border-slate-200 bg-white p-4 transition-transform lg:static lg:translate-x-0">
+    <aside id="side" class="fixed inset-y-0 left-0 z-40 flex w-64 -translate-x-full flex-col gap-1 overflow-y-auto border-r border-slate-200 bg-white p-4 transition-transform lg:sticky lg:top-0 lg:h-screen lg:shrink-0 lg:translate-x-0">
       <div class="mb-5 px-1">${logo("dasbor")}</div>
       ${items}
       <div class="mt-auto border-t border-slate-100 pt-3">

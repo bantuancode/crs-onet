@@ -12,6 +12,7 @@
      data-answer="0..4"   answers the open question      data-tab="n"       detail tab
      data-pick="code"     selects a career in the graph  data-star="x:n"    star rating
      data-scroll="id"     scrolls the landing page       data-open="id"    opens an earlier result
+     data-peek="id"       shows or hides a password
            <form data-form="name">  runs forms.name() */
 import {
   S,
@@ -71,6 +72,7 @@ const CLICKS = {
   star: feedback.onStar,
   scroll: landing.onScroll,
   open: history.onOpen,
+  peek: auth.onPeek,
 };
 const CLICKABLE = Object.keys(CLICKS)
   .map((key) => `[data-${key}]`)

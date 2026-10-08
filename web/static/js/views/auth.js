@@ -1,5 +1,5 @@
 /* Masuk and Daftar. The password goes to the server once, over the form, and is never kept here. */
-import { Field, fieldValue, toast } from "../components/ui.js";
+import { Field, fieldValue, icon, toast } from "../components/ui.js";
 import { authShell } from "../components/shell.js";
 import { api } from "../api.js";
 import { loadState } from "../sync.js";
@@ -32,6 +32,16 @@ export const viewDaftar = () =>
   </form>
   <p class="mt-5 text-center text-sm text-mute">Sudah punya akun? <a href="#/masuk" class="btn-link">Masuk di sini</a></p>
   <p class="mt-4 rounded-xl bg-brand-50 px-3 py-2 text-center text-xs text-brand-700">Kami menyimpan nama, email, dan hasil tesmu supaya riwayatmu bisa dibuka lagi. Password disimpan dalam bentuk teracak.</p>`);
+
+/** The eye button in a password field: shows what was typed, or hides it again. */
+export function onPeek(id, event) {
+  const input = document.getElementById(id);
+  const button = event.target.closest("[data-peek]");
+  const show = input.type === "password";
+  input.type = show ? "text" : "password";
+  button.innerHTML = icon(show ? "eyeOff" : "eye", "h-4 w-4");
+  button.setAttribute("aria-label", show ? "Sembunyikan password" : "Tampilkan password");
+}
 
 const looksLikeEmail = (email) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
 
